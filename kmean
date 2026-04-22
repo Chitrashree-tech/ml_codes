@@ -1,0 +1,19 @@
+# STEP 1: Import Libraries
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+# STEP 2: Load Dataset
+data = load_iris()
+df = pd.DataFrame(data.data, columns=data.feature_names)
+
+# STEP 3: Model
+model = KMeans(n_clusters=3, random_state=42)
+
+# STEP 4: Fit & Predict
+labels = model.fit_predict(df)
+
+# STEP 5: Evaluation
+print("Cluster Labels:", labels[:10])
+print("Silhouette Score:", silhouette_score(df, labels))
